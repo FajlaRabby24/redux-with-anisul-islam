@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import couterReducer from "../fetures/counter/couterSliece";
+import counterReducer from "../fetures/counter/counterSlice";
 
 const store = configureStore({
   reducer: {
-    counter: couterReducer,
+    counter: counterReducer,
   },
 });
+
 export default store;
