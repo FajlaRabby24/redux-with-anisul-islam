@@ -20,6 +20,24 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+export const craeteProduct = createAsyncThunk(
+  "products/createProduct",
+  async (product) => {
+    const res = await axios.post(BASE_URL, product);
+    return res.data;
+  }
+);
+
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async (product) => {
+    const id = product.id;
+    const res = await axios.put(`${BASE_URL}/${id}`, product);
+    console.log(res.data);
+    return res.data;
+  }
+);
+
 const productSlice = createSlice({
   name: "products",
   initialState: {
@@ -48,6 +66,19 @@ const productSlice = createSlice({
         state.products = state.products.filter(
           (product) => product.id !== action.payload
         );
+      })
+      .addCase(craeteProduct.fulfilled, (state, action) => {
+        state.products.push(action.payload);
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        const { id, title, description, price, category } = action.payload;
+        const isExist = state.products.find((product) => product.id === id);
+        if (isExist) {
+          isExist.title = title;
+          isExist.description = description;
+          isExist.price = price;
+          isExist.category = category;
+        }
       });
   },
 });
