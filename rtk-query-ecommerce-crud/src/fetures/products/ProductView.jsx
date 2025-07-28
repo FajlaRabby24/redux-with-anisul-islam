@@ -1,7 +1,45 @@
-import { useGetProductsQuery } from "../../services/productApi";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import {
+  useDeleteProductMutation,
+  useGetProductsQuery,
+  useUpdateProductMutation,
+} from "../../services/productApi";
 
 const ProductView = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery();
+
+  const [deleteProduct] = useDeleteProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
+
+  // handle delete
+  const handleDelete = async (id) => {
+    await deleteProduct(id);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const [updateProductS, setUpdateProduct] = useState(null);
+
+  // onsubmit
+  const onSubmit = async (data) => {
+    const updatedProduct = { ...data, id: updateProductS.id };
+    await updateProduct({ id: updateProductS.id, updatedProduct });
+    // dispatch(updateProduct({ ...data, id: updateProductS.id }));
+    setUpdateProduct(null);
+    reset();
+  };
+
+  const handleCancel = () => {
+    setUpdateProduct(null);
+    reset();
+  };
+
   return (
     <div>
       <h2>Product view</h2>
@@ -43,14 +81,100 @@ const ProductView = () => {
                 Category: {product.category}
               </p>
               <p style={{ margin: 0, color: "#666" }}>Price: {product.price}</p>
-              <button>Edit</button>
-              <button>Delete</button>
+              <button onClick={() => setUpdateProduct(product)}>Edit</button>
+              <button onClick={() => handleDelete(product.id)}>Delete</button>
             </section>
           ))
         ) : (
           <h3>No products are there...</h3>
         )}
       </div>
+      {/* Modal */}
+      {updateProductS && (
+        <dialog open className="modal modal-middle">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="modal-box space-y-4"
+          >
+            <h2 className="text-xl font-bold mb-4">Add a Book</h2>
+
+            <div className="mb-3">
+              <label className="block font-medium">Title</label>
+              <input
+                type="text"
+                defaultValue={updateProductS?.title}
+                {...register("title", { required: "Title is required" })}
+                className="w-full p-2 border rounded"
+              />
+              {errors.title && (
+                <p className="text-red-500 text-sm">{errors.title.message}</p>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label className="block font-medium">Description</label>
+              <input
+                type="text"
+                defaultValue={updateProductS?.description}
+                {...register("description", { required: "Author is required" })}
+                className="w-full p-2 border rounded"
+              />
+              {errors.description && (
+                <p className="text-red-500 text-sm">{errors.author.message}</p>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label className="block font-medium">Price</label>
+              <input
+                type="number"
+                step="0.01"
+                defaultValue={updateProductS?.price}
+                {...register("price", {
+                  required: "Price is required",
+                  min: 0,
+                })}
+                className="w-full p-2 border rounded"
+              />
+              {errors.price && (
+                <p className="text-red-500 text-sm">{errors.price.message}</p>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label className="block font-medium">category</label>
+              <input
+                defaultValue={updateProductS?.category}
+                type="text"
+                {...register("category", {
+                  required: "Quantity is required",
+                  min: 1,
+                })}
+                className="w-full p-2 border rounded"
+              />
+              {errors.category && (
+                <p className="text-red-500 text-sm">
+                  {errors.quantity.message}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+            >
+              Submit
+            </button>
+            <button
+              onClick={handleCancel}
+              type="button"
+              className="btn btn-warning ml-3"
+            >
+              Cancel
+            </button>
+          </form>
+        </dialog>
+      )}
     </div>
   );
 };

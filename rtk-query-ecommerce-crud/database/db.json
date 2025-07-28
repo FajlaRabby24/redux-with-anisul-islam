@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "title": "hello world",
+      "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
+      "price": "44234234",
+      "category": "beauty",
+      "id": "1"
+    },
+    {
+      "title": "hello world",
+      "description": "lajd;kfajd;kl",
+      "price": "45455454",
+      "category": "MORON",
+      "id": "2"
+    },
+    {
+      "title": "fajlar rabby",
+      "description": "rasto biggan",
+      "price": "013",
+      "category": "bis",
+      "id": "3"
+    },
+    {
+      "title": "Accusamus pariatur ",
+      "description": "Amet qui laudantium",
+      "price": "22",
+      "category": "Fugiat id quibusdam ",
+      "id": "PkxDd6WdiandoSRnDhGbm"
+    }
+  ]
+}
