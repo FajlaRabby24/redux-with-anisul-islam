@@ -31,7 +31,7 @@ const TodosCreateOrUpdate = ({
   };
 
   const handleCancel = () => {
-    setUpdatedTodo(null);
+    updatedTodo ? setUpdatedTodo(null) : setIsCreateTodo(false);
   };
   return (
     <dialog open className="modal modal-middle">

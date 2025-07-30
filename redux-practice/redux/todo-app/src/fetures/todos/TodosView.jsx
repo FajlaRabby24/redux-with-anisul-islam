@@ -1,22 +1,45 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TodosCreateOrUpdate from "./TodosCreateOrUpdate";
-import { deleteTodos, fetchTodos } from "./todosSlice";
+import { deleteTodos, fetchTodos, searchTodos } from "./todosSlice";
 
 const TodosView = () => {
   const { todos, isLoading, error } = useSelector((state) => state.todosR);
   const dispatch = useDispatch();
   const [updatedTodo, setUpdatedTodo] = useState(null);
   const [isCreateTodo, setIsCreateTodo] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     dispatch(fetchTodos());
   }, [dispatch]);
+
+  useEffect(() => {
+    // console.log(searchText);
+    const timer = setTimeout(() => {
+      if (searchText.trim() !== "") {
+        console.log(searchText);
+        dispatch(searchTodos(searchText));
+      } else {
+        dispatch(fetchTodos());
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [searchText, dispatch]);
+
   return (
     <>
       <div className="todo-container">
         <h1 className="todo-heading">Todos</h1>
         <button onClick={() => setIsCreateTodo(true)}>Create new Todos</button>
+        <input
+          type="text"
+          placeholder="Type here"
+          className="input"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
 
         {isLoading && <p className="loading-text">Loading...</p>}
         {error && <p className="error-text">{error}</p>}

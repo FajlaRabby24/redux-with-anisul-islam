@@ -5,13 +5,11 @@ const BASE_URL = `http://localhost:3003/todos`;
 
 export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
   const res = await axios.get(BASE_URL);
-  console.log(res.data);
   return res.data;
 });
 
 export const deleteTodos = createAsyncThunk("todos/deleteTodos", async (id) => {
-  const res = await axios.delete(`${BASE_URL}/${id}`);
-  console.log(res.data);
+  await axios.delete(`${BASE_URL}/${id}`);
   return id;
 });
 
@@ -26,9 +24,15 @@ export const updateTodos = createAsyncThunk(
 export const createTodos = createAsyncThunk(
   "todos/createTodos",
   async (todo) => {
-    console.log(todo);
     const res = await axios.post(BASE_URL, todo);
-    console.log(res);
+    return res.data;
+  }
+);
+
+export const searchTodos = createAsyncThunk(
+  "todos/searchTodos",
+  async (searchText) => {
+    const res = await axios.get(`${BASE_URL}?q=${searchText}`);
     return res.data;
   }
 );
@@ -66,7 +70,11 @@ const todosSlice = createSlice({
       // delete todos
       .addCase(updateTodos.fulfilled, (state, action) => {})
       // create todos
-      .addCase(createTodos.fulfilled, (state, action) => {});
+      .addCase(createTodos.fulfilled, (state, action) => {})
+      // searchTodos
+      .addCase(searchTodos.fulfilled, (state, action) => {
+        state.todos = action.payload;
+      });
   },
 });
 
