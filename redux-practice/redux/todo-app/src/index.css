@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+.todo-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+}
+
+.todo-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.loading-text,
+.error-text,
+.empty-text {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.error-text {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Horizontal Card Design */
+.todo-card-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px 20px;
+  transition: box-shadow 0.2s ease;
+}
+
+.todo-card-horizontal:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+}
+
+.todo-info {
+  flex: 1;
+}
+
+.todo-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 4px;
+}
+
+.todo-description {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* Action Buttons */
+.todo-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-btn {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  transition: background-color 0.2s;
+}
+
+.todo-btn:hover {
+  background-color: #2980b9;
+}
+
+.todo-btn.delete {
+  background-color: #e74c3c;
+}
+
+.todo-btn.delete:hover {
+  background-color: #c0392b;
+}

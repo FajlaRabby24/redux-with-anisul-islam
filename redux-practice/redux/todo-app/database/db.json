@@ -1,0 +1,108 @@
+{
+  "todos": [
+    {
+      "id": "2",
+      "title": "hello",
+      "description": "Complete the UI and connect API for Todo App",
+      "completed": false,
+      "tags": [
+        "coding",
+        "react"
+      ],
+      "dueDate": "2025-08-02",
+      "requestId": "4K_PoBb5Ws-gpq_K5RmWF",
+      "signal": {}
+    },
+    {
+      "id": "3",
+      "title": "mobile",
+      "description": "Do cardio and stretching",
+      "completed": true,
+      "tags": [
+        "health",
+        "daily"
+      ]
+    },
+    {
+      "id": "4",
+      "title": "I am web developer",
+      "description": "Focus on createAsyncThunk and createSlice",
+      "completed": false,
+      "tags": [
+        "learning",
+        "redux"
+      ],
+      "requestId": "V7I5bddvTXQIZIvjG9Xht",
+      "signal": {}
+    },
+    {
+      "id": "5",
+      "title": "Call plumber",
+      "description": "Fix kitchen sink leakage",
+      "completed": false,
+      "tags": [
+        "home",
+        "important"
+      ]
+    },
+    {
+      "id": "6",
+      "title": "google",
+      "description": "Monthly bill via bKash",
+      "completed": true,
+      "tags": [
+        "finance",
+        "monthly"
+      ]
+    },
+    {
+      "id": "7",
+      "title": "biotin",
+      "description": "YouTube video on Redux and React integration",
+      "completed": false,
+      "tags": [
+        "learning",
+        "video"
+      ]
+    },
+    {
+      "id": "8",
+      "title": "laptop",
+      "description": "Organize desk and books",
+      "completed": false,
+      "tags": [
+        "cleaning",
+        "weekend"
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Prepare resume",
+      "description": "Update skills and recent projects",
+      "completed": false,
+      "tags": [
+        "career"
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Send email to client",
+      "description": "Send project update and timeline",
+      "completed": false,
+      "tags": [
+        "work",
+        "urgent"
+      ]
+    },
+    {
+      "id": "2e3b",
+      "title": "zinc",
+      "description": "this is very good bottle."
+    },
+    {
+      "id": "6a9e",
+      "title": "Tofen",
+      "description": "this is a jorer oushud"
+    }
+  ]
+}
