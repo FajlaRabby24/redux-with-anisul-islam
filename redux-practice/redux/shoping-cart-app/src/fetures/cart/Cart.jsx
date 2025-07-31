@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "./cartSlice";
+import {
+  decreaseQuantity,
+  increaseQauntity,
+  removeFromCart,
+} from "./cartSlice";
 const BASE_URL = `http://localhost:3003/products`;
 
 const Cart = () => {
@@ -39,6 +43,16 @@ const Cart = () => {
     0
   );
 
+  const handleIncrease = (itemId) => {
+    console.log(itemId);
+    dispatch(increaseQauntity(itemId));
+  };
+
+  const handleDecrease = (itemId) => {
+    console.log(itemId);
+    dispatch(decreaseQuantity(itemId));
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       <h2 className="text-3xl font-bold mb-6">Shopping Cart</h2>
@@ -63,14 +77,14 @@ const Cart = () => {
                   <p className="text-gray-500">৳{item.price}</p>
                   <div className="flex items-center mt-2 gap-3">
                     <button
-                      // onClick={() => handleDecrease(item)}
+                      onClick={() => handleDecrease(item.id)}
                       className="px-2 py-1 btn btn-success rounded"
                     >
                       −
                     </button>
                     <span className="text-lg">{item.quantity}</span>
                     <button
-                      // onClick={() => handleIncrease(item)}
+                      onClick={() => handleIncrease(item.id)}
                       className="px-2 py-1 btn btn-success rounded"
                     >
                       +
